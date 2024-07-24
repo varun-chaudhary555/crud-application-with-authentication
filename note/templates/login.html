@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #e0f2f1, #80cbc4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 420px; /* Adjust as necessary */
+            padding: 40px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #00796b;
+            margin: 0 0 30px 0;
+            font-size: 28px;
+            text-align: center;
+        }
+        .form-group {
+            width: 100%;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+            font-size: 14px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            border: 1px solid #b2dfdb;
+            border-radius: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            cursor: pointer;
+            color: #ffffff;
+            background: linear-gradient(to right, #4caf50, #388e3c);
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: background 0.3s, box-shadow 0.3s;
+            margin-top: 20px;
+        }
+        button[type="submit"]:hover {
+            background: linear-gradient(to right, #388e3c, #4caf50);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        .error-message {
+            color: #d32f2f;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .register-link {
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+        .register-link a {
+            color: #00796b;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .register-link a:hover {
+            color: #004d40;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Login</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_username">Username:</label>
+                {{ form.username.errors }}
+                {{ form.username }}
+            </div>
+            <div class="form-group">
+                <label for="id_password">Password:</label>
+                {{ form.password.errors }}
+                {{ form.password }}
+            </div>
+            <button type="submit">Login</button>
+            <div class="register-link">
+                Not registered yet? <a href="{% url 'register' %}">Register here</a>
+            </div>
+        </form>
+        {% if messages %}
+            <div class="error-message">
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #e0f7fa;
+            padding: 120px;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            color: #00796b;
+            margin-bottom: 1px;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            text-align: center;
+        }
+        form {
+            margin: 0;
+        }
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: #555;
+        }
+        input[type="text"], input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #b2dfdb;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            color: #ffffff;
+            background-color: #00796b;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px #004d40;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #004d40;
+            box-shadow: 0 6px #003d34;
+        }
+        .error-message {
+            color: #d32f2f;
+            margin-top: 15px;
+        }
+        .login-link {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #00796b;
+        }
+        .login-link a {
+            color: #004d40;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Register</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Register</button>
+            <div class="login-link">
+                Already registered? <a href="{% url 'login' %}">Login here</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
